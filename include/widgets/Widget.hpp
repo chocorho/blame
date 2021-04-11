@@ -134,6 +134,11 @@ namespace Blame::Widgets {
         // void grid(int row, int column);
         // void gridRemove();
 
+        /*
+         * Virtual function that sets variables for THIS WIDGET's Client Area.
+         * What is a Client Area? 
+         * 
+         */
         virtual void updateClientArea() {
             this->client_area.left = this->column + 1;
             this->client_area.right = this->column - 1 + this->width;
@@ -141,6 +146,28 @@ namespace Blame::Widgets {
             this->client_area.bottom = this->row - 1 + this->height;
         }
 
+        /*
+         * Virtual method designed to set variables for this widget's View Area.
+         * What is a View Area?
+         * 
+         * Well let's see...
+         * 
+         * The View Area's LEFT index is larger than the Client Area's left
+         * index, as handled by the X_offset variable.
+         * Its RIGHT index is simply the previous value PLUS the View Area's
+         * width.
+         * 
+         * The TOP index is the Client Area's top index is higher (in value)
+         * than the Client Area's top index, as handled by Y_offset variable.
+         * 
+         * The bottom index is the previous value PLUS the View Area height.
+         * 
+         * Interestingly, since at least Jan 2019, this method is called
+         * ONLY IN ONE CONTEXT (!) namely: Text.cpp
+         * 
+         * and it is overridden in zero places.
+         * 
+         */
         virtual void updateViewArea() {
             this->view_area.left = this->client_area.left + this->view_area_offset_x;
             this->view_area.right = this->view_area.left + this->view_area_width;

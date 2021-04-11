@@ -1,3 +1,10 @@
+/* 
+ * Notice: include/widgets/Text.hpp is named "Text", but it contains general
+ *     Widget methods and nothing more.
+ * But src/main/cpp/Text.cpp is named "Text", yet contains methods for `Text`,
+ *     a subclass of the Widget class.
+ * - VC
+ */
 #include <widgets/Text.hpp>
 
 #include <styles/StyleText.hpp>
