@@ -32,6 +32,7 @@ Blame::Console::Console() {
     for (auto i = 0; i < this->height; i++) {
         std::vector<std::string> vec;
 
+        /* Contains (width+1) empty strings!! */
         for (auto j = 0; j < this->width + 1; j++) {
             vec.emplace_back("");
         }
