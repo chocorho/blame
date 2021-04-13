@@ -7,6 +7,10 @@ namespace Blame::Widgets {
     class Widget;
 }
 
+/*
+ * Not sure what this does yet...
+ * It contains a List of Widgets, a direction, and an x,y pair.
+ */
 namespace Blame::Widgets::Managers {
     class Pack : public Blame::Widgets::Managers::Manager {
     public:

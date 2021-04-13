@@ -92,7 +92,13 @@ namespace Blame::Widgets {
         // void placeInside();
         // void placeRemove();
 
+        /* 
+         * Q: If Pack is the only Manager, and Manager is a singleton class,
+         * then why not replace all calls to Manager with calls to Pack?
+         * A: To allow room for other managers in the future.
+         */
         void pack(Blame::Util::Direction direction) {
+            /* If this widget's parent's manager is not set, then set it right quick! */
             if (this->parent->manager == nullptr) {
                 this->updateClientArea();
                 this->parent->manager = new Blame::Widgets::Managers::Pack();
@@ -103,12 +109,20 @@ namespace Blame::Widgets {
                 this->parent->manager = static_cast<Blame::Widgets::Managers::Manager *>(manager);
             }
 
+            /* Now, *use* the parent's manager obj to determine
+             * some key properties of this widget object. */
             auto manager = static_cast<Blame::Widgets::Managers::Pack *>(this->parent->manager);
             manager->widgets.push_back(this);
 
+            /* Aha, here is a lead: the manager's x,y coords will overwrite this
+             * widget's column and row indices. */
             this->column = manager->next_x;
             this->row = manager->next_y;
 
+            /* This control structure simply advances (increments) the manager's coordinate
+             * if the direction we're "packing" in is Right or Down.
+             * (No change if the direction is Left or Up...?)
+             */
             switch (direction) {
                 case Blame::Util::Direction::RIGHT:
                     manager->next_x += this->width + 2;

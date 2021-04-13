@@ -110,7 +110,7 @@ namespace Blame {
         std::vector<std::ostringstream *> buffer_list;
 
         /* Simply an integer (0 or 1!) to mark which buffer is currently in use.
-         * VC: Why not replace this with a simple enum? Why bother making an
+         * Q: Why not replace this with a simple enum? Why bother making an
          * integer variable for it?
          * after all, we define front_buffer and back_buffer as separate stream
          * variables with the same exact scope. Isn't that redundant? */
